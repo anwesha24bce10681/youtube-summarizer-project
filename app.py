@@ -36,8 +36,7 @@ def get_transcript(video_id):
         return "Transcript unavailable for this video."
 
 
-def transcript_to_text(transcript):
-    return " ".join([item['text'] for item in transcript])
+
 
 
 def generate_timestamps(transcript):
@@ -69,7 +68,7 @@ if st.button("Generate Summary"):
     with st.spinner("Fetching transcript..."):
         transcript = get_transcript(video_id)
 
-    full_text = transcript_to_text(transcript)
+    full_text = transcript
 
     timestamps = generate_timestamps(transcript)
 
