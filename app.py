@@ -25,20 +25,15 @@ def extract_video_id(url):
     return None
 
 
+from youtube_transcript_api import YouTubeTranscriptApi
+
 def get_transcript(video_id):
-    ytt_api = YouTubeTranscriptApi()
-
-    transcript = ytt_api.fetch(video_id)
-
-    final_transcript = []
-
-    for item in transcript:
-        final_transcript.append({
-            "text": item.text,
-            "start": item.start
-        })
-
-    return final_transcript
+    try:
+        transcript = YouTubeTranscriptApi.get_transcript(video_id)
+        text = " ".join([i["text"] for i in transcript])
+        return text
+    except Exception:
+        return "Transcript unavailable for this video."
 
 
 def transcript_to_text(transcript):
