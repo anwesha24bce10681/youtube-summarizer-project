@@ -70,7 +70,10 @@ if st.button("Generate Summary"):
 
     full_text = transcript
 
-    timestamps = generate_timestamps(transcript)
+    if isinstance(transcript, str):
+        timestamps = "No timestamps available."
+    else:
+        timestamps = generate_timestamps(transcript)
 
     st.subheader("Summary")
 
